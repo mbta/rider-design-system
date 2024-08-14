@@ -8,10 +8,7 @@ pg_order: 2
 
 <p class="text-2xl">The {{ title }} is for applications and subsites outside of the main MBTA.com website.</p>
 
-
-wraps top-level navigation and branding to provide consistent navigation between global application areas, such as organizations and projects, while facilitating easy access to utilities like support and user settings.
-
-The header shows users that they are on an MBTA page, and shows which MBTA service they're using.
+This shows users that they are on an MBTA page.
 
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FIupfoRXJNItGDD8ZaZCxDz%2FDRAFT%253A-Rider-facing-Design-System%3Fnode-id%3D751-463%26t%3DtmHlFMXSdzDGXYaK-1" allowfullscreen></iframe>
 
@@ -28,7 +25,6 @@ You must not use the MBTA header if your service is not being hosted on the abov
 ### Default header
 
 The default header has the most minimal implementation, solely consisting of an MBTA logo which links to `https://www.mbta.com`.
-
 
 ```html
  <section role="banner">
@@ -47,8 +43,8 @@ The default header has the most minimal implementation, solely consisting of an 
 
 The following are permitted:
 
-- Language button to let users modify the language on the page
-- Login button to get users access their account
+- A button to let users modify the language on the page
+- A button to let users log into and out of their account
 
 ```html
  <section role="banner">
