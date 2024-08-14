@@ -22,6 +22,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 21
+          cache: 'npm'
+          cache-dependency-path: 'documentation/package-lock.json'
       - name: Build 11ty Site
         working-directory: documentation
         run: |
