@@ -54,12 +54,6 @@ module.exports = function(eleventyConfig) {
     return '<img class="icon" src="'+url+'" alt="'+title+'" />';
   });
 
-  // Button shortcode -- experimental
-  // eleventyConfig.addLiquidShortcode("button", function(title,url) {
-  //   return '<a class="button" href="'+url+'">'+title+'</a>';
-  // });
-
-
   // Tailwind pass through and watch target
   eleventyConfig.addWatchTarget("./_tmp/style.css");
   eleventyConfig.addPassthroughCopy({ "./_tmp/style.css": "./style.css" });
@@ -82,44 +76,10 @@ module.exports = function(eleventyConfig) {
   // https://www.11ty.dev/docs/data-deep-merge/
   eleventyConfig.setDataDeepMerge(true);
 
-  // Add support for maintenance-free post authors
-  // Adds an authors collection using the author key in our post frontmatter
-  // Thanks to @pdehaan: https://github.com/pdehaan
-  // eleventyConfig.addCollection("authors", collection => {
-  //   const blogs = collection.getFilteredByGlob("posts/*.md");
-  //   return blogs.reduce((coll, post) => {
-  //     const author = post.data.author;
-  //     if (!author) {
-  //       return coll;
-  //     }
-  //     if (!coll.hasOwnProperty(author)) {
-  //       coll[author] = [];
-  //     }
-  //     coll[author].push(post.data);
-  //     return coll;
-  //   }, {});
-  // });
-
    // Creates custom collection "pages"
    eleventyConfig.addCollection("pages", function(collection) {
     return collection.getFilteredByGlob("pages/*.md");
    });
-
-   // Creates custom collection "posts"
-  //  eleventyConfig.addCollection("posts", function(collection) {
-  //   const coll = collection.getFilteredByGlob("posts/*.md");
-  
-  //   for(let i = 0; i < coll.length ; i++) {
-  //     const prevPost = coll[i-1];
-  //     const nextPost = coll[i + 1];
-  
-  //     coll[i].data["prevPost"] = prevPost;
-  //     coll[i].data["nextPost"] = nextPost;
-  //   }
-  
-  //   return coll;
-  // });
-    
 
    // Creates custom collection "results" for search
    const searchFilter = require("./filters/searchFilter");
@@ -131,12 +91,9 @@ module.exports = function(eleventyConfig) {
    // Creates custom collection "menuItems"
    eleventyConfig.addCollection("menuItems", collection =>
     collection
-      .getAll()
-      .filter(function(item) {
-        return "eleventyNavigation" in item.data;
-      })
+      .getFilteredByTag("pg")
       .sort((a, b) => {
-        return (a.data.eleventyNavigation.order || 0) - (b.data.eleventyNavigation.order || 0);
+        return (a.data.pg_order || 0) - (b.data.pg_order || 0);
       })
   );
 
@@ -183,9 +140,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("favicon.ico");
   eleventyConfig.addPassthroughCopy("images/")
   eleventyConfig.addPassthroughCopy("content/images/")
-  eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("_includes/assets/");
-  eleventyConfig.addPassthroughCopy("_includes/experimental/");
 
   /* Markdown Plugins */
   let markdownIt = require("markdown-it");
@@ -211,13 +166,6 @@ module.exports = function(eleventyConfig) {
   };
 
   eleventyConfig.setLibrary("md", markdownIt(options)
-    .use(mdIterator, 'url_new_win', 'link_open', function (tokens, idx) {
-      const [attrName, href] = tokens[idx].attrs.find(attr => attr[0] === 'href')
-      if (href && (!href.includes('franknoirot.co') && !href.startsWith('/') && !href.startsWith('#'))) {
-        tokens[idx].attrPush([ 'target', '_blank' ])
-        tokens[idx].attrPush([ 'rel', 'noopener noreferrer' ])
-      }
-    })
     .use(markdownItAnchor, opts)
     .use(markdownItEmoji)
     .use(markdownItFootnote)
@@ -244,7 +192,7 @@ module.exports = function(eleventyConfig) {
     // Leading or trailing slashes are all normalized away, so don’t worry about it.
     // If you don’t have a subdirectory, use "" or "/" (they do the same thing)
     // This is only used for URLs (it does not affect your file structure)
-    pathPrefix: "/rider-design-system/",
+    pathPrefix: "/rider-design-system",
     markdownTemplateEngine: "liquid",
     htmlTemplateEngine: "njk",
     dataTemplateEngine: "njk",

@@ -2,9 +2,8 @@
 title: Overview
 date: Last Modified 
 permalink: /
-eleventyNavigation:
-  key: Overview 
-  order: 0
+tags: pg
+pg_order: 0
 ---
 
 To get started with the MBTA Rider Design System, you'll need to add the styles. This can be done with:

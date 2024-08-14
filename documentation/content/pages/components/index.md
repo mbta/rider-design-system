@@ -1,11 +1,9 @@
 ---
 title: Components
+tags: pg
 date: Last Modified 
 permalink: /components/
-eleventyNavigation:
-  key: Components 
-  order: 1
-  title: Components
+pg_order: 1
 ---
 
 | Component Name | Status |

@@ -1,11 +1,9 @@
 ---
 title: Application top header
-date: Last Modified 
+date: Last Modified
+tags: pg
 permalink: /components/header/
-eleventyNavigation:
-  key: Application top header
-  parent: Components 
-  order: 2
+pg_order: 2
 ---
 
 <p class="text-2xl">The {{ title }} is for applications and subsites outside of the main MBTA.com website.</p>
