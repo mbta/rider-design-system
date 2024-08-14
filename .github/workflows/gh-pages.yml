@@ -30,6 +30,9 @@ jobs:
           npm run build:postcss
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path:
+            documentation/_site
   deploy:
     needs: build
     permissions:
