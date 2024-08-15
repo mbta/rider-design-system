@@ -9,12 +9,15 @@ const pluginTOC = require('eleventy-plugin-nesting-toc');
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const Image = require("@11ty/eleventy-img");
 const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+
 
 module.exports = function(eleventyConfig) {
   // eleventyConfig.addPlugin(pluginTOC);
   eleventyConfig.addPlugin(svgContents); 
   eleventyConfig.addPlugin(embedEverything);
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+  eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addShortcode("version", function () {
     return String(Date.now());
   });
