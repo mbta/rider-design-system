@@ -2,10 +2,20 @@
 <html {% if section %} data-current="{{ section }}"{% endif %} lang="en">
   {% include "components/head.njk" %}
   <body>
-    <div id="app" class="h-screen bg-white dark:bg-gray-900">
+    <section role="banner">
+      <a href="#main-content" class="mbta--skip-link">Skip to main content
+      </a>
+      <nav class="mbta--nav">
+        <a class="mbta--logo" href="https://www.mbta.com">
+          <img role="img"src="https://cdn.mbta.com/images/mbta-name-and-logo.svg" width="198"height="36"alt="Massachusetts Bay Transportation Authority" />
+          <img role="img"src="https://cdn.mbta.com/images/mbta-logo.svg" width="36"height="36"alt="Massachusetts Bay Transportation Authority" />
+        </a>
+      </nav>
+    </section>
+  
+    <div id="app" class="bg-white dark:bg-gray-900">
       {% include "components/header.njk" %}
-
-      <nav id="navigation" class="fixed inset-y-0 overflow-x-hidden overflow-y-auto  hidden w:64 lg:w-72 mt-20 md:block  dark:bg-gray-900  flex-none top-0  p-4 w-64 md:border-r border-b border-gray-100 dark:border-gray-800">
+      <nav id="navigation" class="fixed inset-y-0 overflow-x-hidden overflow-y-auto  hidden w:64 lg:w-72 md:block  dark:bg-gray-900  flex-none top-20 p-4 w-64 md:border-r border-b border-gray-100 dark:border-gray-800" style="margin-top: 8rem">
         <div class=" clear-right">
           <a href="/">
           <div class="block md:hidden pt-4 font-semibold text-gray-500">{{ site.name }}</div>
@@ -14,12 +24,23 @@
         </div>
          {% include "components/nav.njk" %}
       </nav>
-        <main id="main" class="dark:bg-gray-900 pt-16 sm:pt-18 md:pt-20 md:pl-64 lg:pl-72">    
-       
-
-        {{ layoutContent | safe }} 
-        {% include "components/footer.njk" %} 
-        </main>
+      <main id="main" class="dark:bg-gray-900 md:pl-64 lg:pl-72">    
+      {{ layoutContent | safe }} 
+      {% include "components/footer.njk" %} 
+      </main>
     </div>
+
+    <footer>
+      <nav class="mbta--nav" aria-label="MBTA system footer">
+        <ul class="mbta--nav-actions">
+          <li><a href="https://www.mbta.com/policies/privacy-policy">Privacy</a></li>
+          <li><a href="https://www.mbta.com/policies/terms-use">Terms and conditions</a></li>
+        </ul>
+        <div class="mbta--copyright">© Massachusetts Bay Transportation Authority, all rights reserved.</div>
+        <a class="mbta--logo" href="https://www.mbta.com">
+          <img role="img" src="https://cdn.mbta.com/images/mbta-logo.svg" width="36" height="36" alt="Massachusetts Bay Transportation Authority" />
+        </a>
+      </nav>
+    </footer>
   </body>
 </html>

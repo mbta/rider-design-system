@@ -1,0 +1,180 @@
+:root {
+  --transportation-the-ride: #52bbc5;
+  --transportation-subway: #494f5c;
+  --timing-default: 200ms;
+  --spacing-extra-extra-large: 48px;
+  --spacing-extra-large: 32px;
+  --spacing-large: 24px;
+  --spacing-default: 16px;
+  --spacing-small: 8px;
+  --spacing-extra-small: 4px;
+  --font-size-large: 18px;
+  --font-size-default: 16px;
+  --font-size-small: 14px;
+  --font-stack: Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --blue-800: #0b2f4c;
+  --blue-500: #165c96;
+  --blue-400: #5da9e8;
+  --blue-300: #a1c6ed;
+  --blue-200: #cee0f4;
+  --blue-100: #e2ecf9;
+  --purple-600: #664a8d;
+  --purple-100: #dcd3e8;
+  --green-800: #145a06;
+  --green-100: #dff0d8;
+  --red-700: #b3000f;
+  --red-100: #f2dede;
+  --yellow-700: #d8ac00;
+  --yellow-500: #ffce0c;
+  --yellow-400: #ffdd00;
+  --yellow-300: #ffe372;
+  --yellow-100: #fffae9;
+  --neutral-1000: #000000;
+  --neutral-900: #192026;
+  --neutral-700: #3e454d;
+  --neutral-500: #626a73;
+  --neutral-400: #8a9199;
+  --neutral-300: #bdbfc1;
+  --neutral-200: #e5e5e3;
+  --neutral-100: #f5f4f2;
+  --neutral-0: #ffffff;
+  --white: #ffffff;
+  --action-primary-inverse: var(--neutral-0);
+  --action-primary-disabled: var(--neutral-500);
+  --action-primary-active: var(--blue-800);
+  --action-primary-hover: var(--blue-800);
+  --action-primary-default: var(--purple-600);
+  --text-tertiary: var(--neutral-900);
+  --text-secondary: var(--neutral-900);
+  --background-tertiary: var(--neutral-200);
+  --background-secondary: var(--neutral-100);
+  --background-primary: var(--neutral-0);
+  --text-primary: var(--neutral-900);
+}
+
+body {
+  font-family: var(--font-stack);
+  font-size: var(--font-size-default);
+  color: var(--text-primary);
+}
+
+a {
+  color: var(--action-primary-active);
+  text-decoration: underline;
+}
+
+.mbta--skip-link {
+  background: 0 0;
+  left: 0;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  top: -3.8rem;
+  transition: .15s ease-in-out;
+  z-index: 100;
+
+  &:focus {
+    background: #fff;
+    left: 0;
+    position: absolute;
+    outline: 0.25rem solid #2491ff;
+    outline-offset: 0;
+    top: 0;
+    transition: .15s ease-in-out;
+  }
+}
+
+nav.mbta--nav {
+  [role="banner"] &, footer & {
+    align-items: center;
+    background-color: var(--blue-800);
+    color: var(--blue-100);
+    display: flex;
+    gap: var(--spacing-default); 
+    font-family: var(--font-stack);
+    font-size: var(--font-size-small);
+    padding-block: var(--spacing-small);
+    padding-inline: clamp(var(--spacing-small), 5%, var(--spacing-extra-extra-large));
+
+    .mbta--logo, .mbta--nav-actions {
+      display: inherit;
+      gap: inherit;
+    }
+
+    .mbta--logo {
+      filter: invert(1);
+
+      img {
+        height: revert-layer; 
+        max-height: calc(var(--spacing-default) + var(--spacing-small));
+        width: auto;
+      }
+    }
+
+    .mbta--nav-actions {
+      list-style: none;
+      padding-inline: 0;
+      margin: 0;
+
+      li {
+        text-wrap: nowrap;
+      }
+    }
+  }
+}
+
+[role="banner"]:has(.mbta--nav) {
+  .mbta--logo {
+    container: header-logo / inline-size;
+    flex-grow: 1;
+    flex-shrink: 0;
+  }
+
+  [src='https://cdn.mbta.com/images/mbta-logo.svg']  {
+    display: none; 
+  }
+  [src='https://cdn.mbta.com/images/mbta-name-and-logo.svg']  {
+    display: inline-block; 
+  }
+
+  .mbta--nav-actions {
+    margin-left: auto;
+  }
+
+  @container header-logo (width < 130px) {
+    [src='https://cdn.mbta.com/images/mbta-logo.svg']  {
+      display: inline-block; 
+    }
+    [src='https://cdn.mbta.com/images/mbta-name-and-logo.svg']  {
+      display: none; 
+    }
+  }
+}
+
+footer:has(.mbta--nav[aria-label^="MBTA system"]) {
+  container: footer-nav / inline-size;
+
+  a {
+    color: var(--blue-400);
+  }
+
+  .mbta--nav-actions {
+    flex-grow: 1;
+  }
+
+  .mbta--copyright,
+  .mbta--logo {
+    margin-left: auto;
+  }
+
+  @container footer-nav (width < 56ch) {
+    .mbta--nav[aria-label^="MBTA system"] {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .mbta--copyright,
+    .mbta--logo {
+      margin-left: unset;
+    }
+  }  
+}
