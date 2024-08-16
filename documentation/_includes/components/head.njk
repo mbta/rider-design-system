@@ -5,6 +5,17 @@
   <meta name="description" content="{{ metaDescription or renderData.metaDescription or site.description }}">
   <link rel="stylesheet" href="/style.css?v={% version %}" />
   <link rel="stylesheet" href="/_includes/assets/css/mbta.css" />
+  <style>
+    body {
+      min-height: 100vh;    
+      display: flex;
+      flex-direction: column;
+    }
+
+    footer {
+      margin-top: auto;
+    }
+  </style>
   {% set js %}
     {% include "assets/js/inline.js" %}
     {% include "assets/js/search.js" %}
