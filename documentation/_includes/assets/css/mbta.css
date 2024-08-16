@@ -90,9 +90,8 @@ nav.mbta--nav {
     display: flex;
     gap: var(--spacing-default); 
     font-family: var(--font-stack);
-    font-size: var(--font-size-small);
-    padding-block: var(--spacing-small);
-    padding-inline: clamp(var(--spacing-small), 5%, var(--spacing-extra-extra-large));
+    padding-block: var(--spacing-default);
+    padding-inline: clamp(var(--spacing-default), 5%, var(--spacing-extra-extra-large));
 
     .mbta--logo, .mbta--nav-actions {
       display: inherit;
@@ -104,7 +103,7 @@ nav.mbta--nav {
 
       img {
         height: revert-layer; 
-        max-height: calc(var(--spacing-default) + var(--spacing-small));
+        max-height: calc(var(--spacing-default) + var(--spacing-default));
         width: auto;
       }
     }
