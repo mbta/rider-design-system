@@ -1,15 +1,26 @@
 {
   "name": "rider-design-system",
+  "type": "module",
   "version": "1.0.0",
   "description": "> [!WARNING] > Under construction.",
-  "main": "index.js",
+  "files": [
+    "dist/*"
+  ],
+  "exports": {
+    ".": "./dist/tailwind.config.js"
+  },
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node tokens/build.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@tokens-studio/sd-transforms": "^1.2.5",
+    "sd-tailwindcss-transformer": "^2.0.0",
+    "style-dictionary": "^4.1.3"
+  }
 }

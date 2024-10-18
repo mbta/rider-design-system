@@ -1,0 +1,61 @@
+{
+  "text-color": {
+    "primary": {
+      "$type": "color",
+      "$value": "{color.neutral.900}"
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": "{color.neutral.900}"
+    },
+    "tertiary": {
+      "$type": "color",
+      "$value": "{color.neutral.900}"
+    },
+    "reverse": {
+      "$type": "color",
+      "$value": "{color.white}"
+    }
+  },
+  "background-color": {
+    "primary": {
+      "$type": "color",
+      "$value": "{color.white}"
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": "{color.neutral.50}"
+    },
+    "tertiary": {
+      "$type": "color",
+      "$value": "{color.neutral.200}"
+    }
+  },
+  "action-color": {
+    "default": {
+      "$type": "color",
+      "$value": "{color.blue.700}"
+    },
+    "hover": {
+      "$type": "color",
+      "$value": "{color.blue.900}"
+    },
+    "active": {
+      "$type": "color",
+      "$value": "{color.blue.900}"
+    },
+    "disabled": {
+      "$type": "color",
+      "$value": "{color.neutral.500}"
+    },
+    "inverse": {
+      "$type": "color",
+      "$value": "{color.white}"
+    },
+    "visited": {
+      "$type": "color",
+      "$value": "{color.purple.600}",
+      "$description": "Only use this if applicable. Such as in the context of a link."
+    }
+  }
+}
