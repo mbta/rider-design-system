@@ -11,7 +11,7 @@ const tailwindConfig = {
         return getTailwindFormat({
           dictionary,
           formatType: "js",
-          isVariables: true, // use CSS variables
+          isVariables: false, // don't use CSS variables
           extend: false, // completely replace the default TW theme
           type: "all",
           tailwind: {
@@ -55,7 +55,7 @@ const themeCSSConfigs = ["Light", "Dark"].map(theme =>
       transforms: ['name/kebab'],
       buildPath: 'dist/',
       files: [{
-        destination: `variables.${theme}.css`,
+        destination: `variables.${theme.toLowerCase()}.css`,
         format: 'css/variables',
       }],
     }

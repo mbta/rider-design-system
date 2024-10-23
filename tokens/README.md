@@ -11,6 +11,27 @@
 > [!caution]
 > This is very early stage work! The details are subject to change!
 
+### Token generation and distribution
+
+1. Tokens are exported from Figma, via the Token Studio Figma plugin. The exported files are included in this repository at:
+  ```
+  tokens/
+  |-- Base/
+  |      |-- Mode 1.json
+  |-- MBTA System/
+  |      |-- Value.json
+  |-- Semantic/
+  |      |-- Dark.json
+  |      |-- Light.json
+  |-- $metadata.json
+  |-- $themes.json
+  ```
+2. The script at `tokens/build.js` handles processing the tokens into file types other applications can consume. It uses [Style Dictionary](https://styledictionary.com/) to process these files into as of now three outputs in `dist/`
+    1. `tailwind.config.js` A Tailwind configuration which uses the provided tokens to configure theme colors, spacing, font size, font family, line height, border radius, default border width, and default transition duration. This is the default export of this repo, so you can consume it via `import tailwindConfig from "rider-design-system"` or just the `theme` via `import { theme } from "rider-design-system"`
+    2. Two CSS files, `variables.dark.css` and `variables.light.css`, defining variables for every token for dark mode and light mode.
+
+## Background
+
 ![./data-flow-draft.png](./data-flow-draft.png)
 
 We seek to implement design tokens by architecting a system in which design leads can curate a "source of truth" that downstream designers and engineers can easily consume. 
