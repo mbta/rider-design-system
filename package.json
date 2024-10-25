@@ -4,7 +4,8 @@
   "version": "0.5.0",
   "description": "> [!WARNING] > Under construction.",
   "files": [
-    "dist/*"
+    "dist/*",
+    "icons/*"
   ],
   "exports": {
     ".": "./dist/tailwind.config.js"
