@@ -1,65 +1,28 @@
-:root {
-  --transportation-the-ride: #52bbc5;
-  --transportation-subway: #494f5c;
-  --timing-default: 200ms;
-  --spacing-extra-extra-large: 48px;
-  --spacing-extra-large: 32px;
-  --spacing-large: 24px;
-  --spacing-default: 16px;
-  --spacing-small: 8px;
-  --spacing-extra-small: 4px;
-  --font-size-large: 18px;
-  --font-size-default: 16px;
-  --font-size-small: 14px;
-  --font-stack: Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --blue-800: #0b2f4c;
-  --blue-500: #165c96;
-  --blue-400: #5da9e8;
-  --blue-300: #a1c6ed;
-  --blue-200: #cee0f4;
-  --blue-100: #e2ecf9;
-  --purple-600: #664a8d;
-  --purple-100: #dcd3e8;
-  --green-800: #145a06;
-  --green-100: #dff0d8;
-  --red-700: #b3000f;
-  --red-100: #f2dede;
-  --yellow-700: #d8ac00;
-  --yellow-500: #ffce0c;
-  --yellow-400: #ffdd00;
-  --yellow-300: #ffe372;
-  --yellow-100: #fffae9;
-  --neutral-1000: #000000;
-  --neutral-900: #192026;
-  --neutral-700: #3e454d;
-  --neutral-500: #626a73;
-  --neutral-400: #8a9199;
-  --neutral-300: #bdbfc1;
-  --neutral-200: #e5e5e3;
-  --neutral-100: #f5f4f2;
-  --neutral-0: #ffffff;
-  --white: #ffffff;
-  --action-primary-inverse: var(--neutral-0);
-  --action-primary-disabled: var(--neutral-500);
-  --action-primary-active: var(--blue-800);
-  --action-primary-hover: var(--blue-800);
-  --action-primary-default: var(--purple-600);
-  --text-tertiary: var(--neutral-900);
-  --text-secondary: var(--neutral-900);
-  --background-tertiary: var(--neutral-200);
-  --background-secondary: var(--neutral-100);
-  --background-primary: var(--neutral-0);
-  --text-primary: var(--neutral-900);
-}
 
 body {
-  font-family: var(--font-stack);
-  color: var(--text-primary);
+  background-color: var(--background-secondary);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  line-height: var(--line-height-normal);
 }
 
 a {
-  color: var(--action-primary-active);
+  color: var(--color-action-primary-active);
   text-decoration: underline;
+
+  &:hover {
+    color: var(--color-action-primary-hover);
+  }
+  &:active {
+    color: var(--color-action-primary-active);
+  }
+  &:visited {
+    color: var(--color-action-primary-visited);
+  }
+  &[disabled] {
+    color: var(--color-action-primary-disabled);
+  }
 }
 
 .mbta--skip-link {
@@ -72,26 +35,60 @@ a {
   z-index: 100;
 
   &:focus {
-    background: #fff;
+    background: var(--background-secondary);
     left: 0;
     position: absolute;
-    outline: 0.25rem solid #2491ff;
+    outline: 0.25rem solid var(--color-action-primary-active);
     outline-offset: 0;
     top: 0;
     transition: .15s ease-in-out;
   }
 }
 
+nav.mbta--subnav {
+  background-color: var(--navbar-local-background-color);
+  color: var(--menu-item-default-text-color);
+  padding-block: var(--spacing-3);
+
+  .container {
+    align-items: center;
+    display: flex;
+    gap: var(--spacing-3); 
+  }
+
+  .mbta--logo {
+    display: inherit;
+    gap: inherit;
+  }
+
+  button {
+    background-color: transparent;
+    border: 1px solid var(--menu-item-default-border-color);
+    color: var(--menu-item-default-text-color);
+
+    + div a {
+      background-color: var(--submenu-background-color);
+      color: var(--color-action-primary-default)
+    }
+  }
+
+  button:hover, button[aria-expanded="true"] {
+    background-color: var(--menu-item-active-background-color);
+    border-color: var(--menu-item-active-border-color);
+    color: var(--menu-item-active-text-color);
+  }
+}
+
 nav.mbta--nav {
   [role="banner"] &, footer & {
-    align-items: center;
-    background-color: var(--blue-800);
-    color: var(--blue-100);
-    display: flex;
-    gap: var(--spacing-default); 
-    font-family: var(--font-stack);
-    padding-block: var(--spacing-default);
-    padding-inline: clamp(var(--spacing-default), 5%, var(--spacing-extra-extra-large));
+    background-color: var(--navbar-global-background-color);
+    padding: var(--spacing-2);
+
+    .container {
+      align-items: center;
+      display: flex;
+      gap: var(--spacing-3); 
+    }
 
     .mbta--logo, .mbta--nav-actions {
       display: inherit;
@@ -103,7 +100,7 @@ nav.mbta--nav {
 
       img {
         height: revert-layer; 
-        max-height: calc(var(--spacing-default) + var(--spacing-default));
+        max-height: 2.25rem;
         width: auto;
       }
     }
@@ -149,10 +146,12 @@ nav.mbta--nav {
 }
 
 footer:has(.mbta--nav[aria-label^="MBTA system"]) {
+  background-color: var(--footer-global-background-color);
   container: footer-nav / inline-size;
+  color: var(--footer-global-text-color);
 
   a {
-    color: var(--blue-400);
+    color: var(--color-action-primary-default);
   }
 
   .mbta--nav-actions {

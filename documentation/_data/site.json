@@ -4,17 +4,5 @@
   "description": "Styles, components, and patterns for MBTA.com and other digital rider-facing properties of the Massachusetts Bay Transit Authority",
   "footer": "Need help? <a href='mailto:techinnovation@mbta.com'>Contact the team</a>",
   "url": "https://mbta.github.io/rider-design-system",
-  "githubUrl": "https://github.com/mbta/rider-design-system",
-  "githubBranch": "main",
-  "navigationStyle": "vertical",
-  "enableSearch": true,
-  "enableDarkMode": true,
-  "enableEditButton": true,
-  "enableDatestamp": true,
-  "enableGithubLink": false,
-  "enableContact": false,
-  "enableNetlifyCMS": false,
-  "enableComments": false,
-  "enableEncryption": false,
-  "enablePageNavigation": false
+  "githubUrl": "https://github.com/mbta/rider-design-system"
 }

@@ -1,20 +1,25 @@
-const { DateTime } = require("luxon");
-const CleanCSS = require("clean-css");
-const UglifyJS = require("uglify-es");
-const htmlmin = require("html-minifier");
-const svgContents = require("eleventy-plugin-svg-contents");
-const mdIterator = require('markdown-it-for-inline')
-const embedEverything = require("eleventy-plugin-embed-everything");
-const pluginTOC = require('eleventy-plugin-nesting-toc');
-const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
-const Image = require("@11ty/eleventy-img");
-const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+import { DateTime } from "luxon";
+import CleanCSS from "clean-css";
+import UglifyJS from "uglify-es";
+import htmlmin from "html-minifier";
+import svgContents from "eleventy-plugin-svg-contents";
+import embedEverything from "eleventy-plugin-embed-everything";
+import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
+import Image from "@11ty/eleventy-img";
+import { EleventyHtmlBasePlugin } from "@11ty/eleventy";
+import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
+import markdownIt from "markdown-it";
+import markdownItAnchor from "markdown-it-anchor";
+import markdownItEmoji from "markdown-it-emoji";
+import markdownItFootnote from "markdown-it-footnote";
+import markdownItContainer from "markdown-it-container";
+import markdownLinkifyImages from 'markdown-it-linkify-images';
+import markdownItAttrs from "markdown-it-attrs";
+import markdownItCenterText from "markdown-it-center-text";
+import { statSync } from "fs";
 
-
-module.exports = function(eleventyConfig) {
-  // eleventyConfig.addPlugin(pluginTOC);
-  eleventyConfig.addPlugin(svgContents); 
+export default function (eleventyConfig) {
+  eleventyConfig.addPlugin(svgContents);
   eleventyConfig.addPlugin(embedEverything);
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
   eleventyConfig.addPlugin(syntaxHighlight);
@@ -23,12 +28,12 @@ module.exports = function(eleventyConfig) {
   });
 
   // Responsive image shortcode
-  eleventyConfig.addLiquidShortcode("image", async function(src, alt, sizes = "100vw") {
-    if(alt === undefined) {
+  eleventyConfig.addLiquidShortcode("image", async function (src, alt, sizes = "100vw") {
+    if (alt === undefined) {
       // You bet we throw an error on missing alt (alt="" works okay)
       throw new Error(`Missing \`alt\` on responsiveimage from: ${src}`);
     }
-    src = './content/images/'+src
+    src = './content/images/' + src
     let metadata = await Image(src, {
       widths: [400, 600, 800, 1000, 1200, 1400, 1600, 1900],
       formats: ['webp', 'jpeg', 'png'],
@@ -40,8 +45,8 @@ module.exports = function(eleventyConfig) {
 
     let picture = `<picture>
       ${Object.values(metadata).map(imageFormat => {
-        return `  <source type="image/${imageFormat[0].format}" srcset="${imageFormat.map(entry => entry.srcset).join(", ")}" sizes="${sizes}">`;
-      }).join("\n")}
+      return `  <source type="image/${imageFormat[0].format}" srcset="${imageFormat.map(entry => entry.srcset).join(", ")}" sizes="${sizes}">`;
+    }).join("\n")}
         <img
           data-src="${lowsrc.url}"
           width="${lowsrc.width}"
@@ -49,12 +54,12 @@ module.exports = function(eleventyConfig) {
           alt="${alt}">
       </picture>`;
 
-      return `${picture}`;
+    return `${picture}`;
 
   });
 
-  eleventyConfig.addLiquidShortcode("icon", function(title,url) {
-    return '<img class="icon" src="'+url+'" alt="'+title+'" />';
+  eleventyConfig.addLiquidShortcode("icon", function (title, url) {
+    return '<img class="icon" src="' + url + '" alt="' + title + '" />';
   });
 
   // Tailwind pass through and watch target
@@ -63,7 +68,13 @@ module.exports = function(eleventyConfig) {
 
   // Alpine.js pass through
   eleventyConfig.addPassthroughCopy({
-    "./node_modules/alpinejs/dist/alpine.js": "./js/alpine.js",
+    "./node_modules/alpinejs/dist/cdn.min.js": "./js/alpine.js",
+  });
+
+  // tokens pass through
+  eleventyConfig.addPassthroughCopy({
+    "./../dist/variables.light.css": "./css/variables.light.css",
+    "./../dist/variables.dark.css": "./css/variables.dark.css",
   });
 
   // Eleventy Navigation https://www.11ty.dev/docs/plugins/navigation/
@@ -79,20 +90,13 @@ module.exports = function(eleventyConfig) {
   // https://www.11ty.dev/docs/data-deep-merge/
   eleventyConfig.setDataDeepMerge(true);
 
-   // Creates custom collection "pages"
-   eleventyConfig.addCollection("pages", function(collection) {
+  // Creates custom collection "pages"
+  eleventyConfig.addCollection("pages", function (collection) {
     return collection.getFilteredByGlob("pages/*.md");
-   });
+  });
 
-   // Creates custom collection "results" for search
-   const searchFilter = require("./filters/searchFilter");
-   eleventyConfig.addFilter("search", searchFilter);
-   eleventyConfig.addCollection("results", collection => {
-    return [...collection.getFilteredByGlob("**/*.md")];
-   });
-  
-   // Creates custom collection "menuItems"
-   eleventyConfig.addCollection("menuItems", collection =>
+  // Creates custom collection "menuItems"
+  eleventyConfig.addCollection("menuItems", collection =>
     collection
       .getFilteredByTag("pg")
       .sort((a, b) => {
@@ -100,24 +104,31 @@ module.exports = function(eleventyConfig) {
       })
   );
 
-  // Date formatting (human readable)
-  eleventyConfig.addFilter("readableDate", dateObj => {
+  function readableDate(dateObj) {
     return DateTime.fromJSDate(dateObj).toFormat("LLL dd, yyyy");
-  });
+  }
+  // Date formatting (human readable)
+  eleventyConfig.addFilter("readableDate", readableDate);
 
   // Date formatting (machine readable)
   eleventyConfig.addFilter("machineDate", dateObj => {
-
     return DateTime.fromJSDate(dateObj).toFormat("yyyy-MM-dd");
   });
 
+  eleventyConfig.addShortcode("createdDate", function () {
+    return this.page?.inputPath ? readableDate(statSync(this.page.inputPath).birthtime) : undefined;
+  });
+  eleventyConfig.addShortcode("modifiedDate", function () {
+    return this.page?.inputPath ? readableDate(statSync(this.page.inputPath).mtime) : undefined;
+  });
+
   // Minify CSS
-  eleventyConfig.addFilter("cssmin", function(code) {
+  eleventyConfig.addFilter("cssmin", function (code) {
     return new CleanCSS({}).minify(code).styles;
   });
 
   // Minify JS
-  eleventyConfig.addFilter("jsmin", function(code) {
+  eleventyConfig.addFilter("jsmin", function (code) {
     let minified = UglifyJS.minify(code);
     if (minified.error) {
       console.log("UglifyJS error: ", minified.error);
@@ -127,7 +138,7 @@ module.exports = function(eleventyConfig) {
   });
 
   // Minify HTML output
-  eleventyConfig.addTransform("htmlmin", function(content, outputPath) {
+  eleventyConfig.addTransform("htmlmin", function (content, outputPath) {
     if (outputPath.indexOf(".html") > -1) {
       let minified = htmlmin.minify(content, {
         useShortDoctype: true,
@@ -146,16 +157,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("_includes/assets/");
 
   /* Markdown Plugins */
-  let markdownIt = require("markdown-it");
-  let markdownItAnchor = require("markdown-it-anchor");
-  let markdownItEmoji = require("markdown-it-emoji");
-  let markdownItFootnote = require("markdown-it-footnote");
-  let markdownItContainer = require("markdown-it-container");
-  let markdownLinkifyImages = require('markdown-it-linkify-images')
-  let markdownToc = require('markdown-it-table-of-contents')
-  let markdownItTasks = require('markdown-it-task-lists')
-  let markdownItAttrs = require("markdown-it-attrs")
-  let markdownItCenterText = require("markdown-it-center-text")
+
   let options = {
     html: true,
     breaks: true,
@@ -177,13 +179,12 @@ module.exports = function(eleventyConfig) {
     .use(markdownItContainer, 'callout-pink')
     .use(markdownItContainer, 'callout-green')
     .use(markdownItContainer, 'warning')
-    .use(markdownItTasks)
     .use(markdownItCenterText)
     .use(markdownLinkifyImages, {
       imgClass: "p-4",
     })
     .use(markdownItAttrs, {
-      includeLevel: [2,3],
+      includeLevel: [2, 3],
       listType: "ol"
     })
   );

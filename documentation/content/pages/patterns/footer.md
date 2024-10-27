@@ -1,16 +1,17 @@
 ---
-title: MBTA.com footer
-date: Last Modified
-tags: pg
-permalink: /components/mbta-footer/
-pg_order: 3
+title: Footer
+permalink: /patterns/footer/
+figma: "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FIupfoRXJNItGDD8ZaZCxDz%2FDRAFT%253A-Rider-facing-Design-System%3Fnode-id%3D679-20&%26t%3DtmHlFMXSdzDGXYaK-1"
+eleventyNavigation:
+  key: Footer
+  parent: Patterns
 ---
 
 <p class="text-2xl">The {{ title }} is for applications and subsites outside of the main MBTA.com website.</p>
 
 This shows users that they are on an MBTA page, and offers links users might not find elsewhere in the page.
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FIupfoRXJNItGDD8ZaZCxDz%2FDRAFT%253A-Rider-facing-Design-System%3Fnode-id%3D751-463%26t%3DtmHlFMXSdzDGXYaK-1" allowfullscreen></iframe>
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src={{figma}} allowfullscreen></iframe>
 
 ## When to use a {{ title }}
 

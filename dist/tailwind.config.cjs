@@ -51,7 +51,7 @@ module.exports = {
         700: "#9f0411",
         800: "#8f000c",
         900: "#660009",
-        light: "#f2dede"
+        50: "#f2dede"
       },
       emerald: {
         50: "#dff0d8",

@@ -1,14 +1,16 @@
 ---
 title: Components
-tags: pg
-date: Last Modified 
 permalink: /components/
-pg_order: 1
+eleventyNavigation:
+  key: Components
 ---
+Definition: Components are individual, reusable UI elements that can be combined to create a user interface. They often include buttons, form fields, modals, navigation bars, and other elements.
+Purpose: Components are designed to be directly implemented in code and are usually documented with examples, usage guidelines, and best practices.
+Characteristics: Each component often has defined states (like hover, active, disabled) and can be customized with properties (like size, color, or text).
 
 | Component Name | Status |
 | --- | ----------- |
-| Footer | 🟠 In progress |
-| [Header](./header/) | 🟡 Beta |
+| [Buttons](./buttons/) | 🟠 In progress |
+| [Header](./links/) | 🟠 In progress |
 
 

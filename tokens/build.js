@@ -51,7 +51,7 @@ const tailwindConfig = {
       buildPath: "dist/",
       files: [
         {
-          destination: "tailwind.config.js",
+          destination: "tailwind.config.cjs",
           format: 'tailwindFormat',
           filter: 'base'
         }

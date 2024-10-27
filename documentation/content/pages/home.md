@@ -1,16 +1,32 @@
 ---
 title: Overview
-date: Last Modified 
 permalink: /
-tags: pg
-pg_order: 0
+eleventyNavigation:
+  key: Home
 ---
 
-To get started with the MBTA Rider Design System, you'll need to add the styles. This can be done with:
+A brief overview of the design system's purpose and goals, often highlighting its importance for consistency and efficiency.
 
-```html
-<link rel="stylesheet" type="text/css" href="https://cdn.mbta.com/design-system/v0/all.css" />
-```
+## Getting started
 
-This will give you all of the fonts that you need as well as all the styles.
+Links or sections guiding users on how to begin using the design system, including installation instructions and basic usage.
 
+### Tokens
+
+Tokens with a list.
+
+### Components
+
+What are components, with a list
+
+### Patterns
+
+Patterns with a list
+
+## FAQ
+
+Information on recent updates or changes to the design system, often displayed to keep users informed.
+
+How to be involved?
+
+Etc.

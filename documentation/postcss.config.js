@@ -1,6 +1,9 @@
-module.exports = {
+import tw from "tailwindcss";
+import ap from "autoprefixer";
+
+export default {
   plugins: [
-    require(`tailwindcss`)(`./styles/tailwind.config.js`),
-    require(`autoprefixer`),
-  ],
+    tw(`./styles/tailwind.config.js`),
+    ap,
+  ]
 };
