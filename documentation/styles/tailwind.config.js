@@ -3,7 +3,7 @@ const tailwindConfig = require("../../dist/tailwind.config.cjs");
 
 module.exports = {
   content: [
-    "_site/**/*.html"
+    "_includes/**/*.njk"
   ],
   darkMode: 'media',
   variants: {},

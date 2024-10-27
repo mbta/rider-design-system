@@ -23,9 +23,6 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(embedEverything);
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
   eleventyConfig.addPlugin(syntaxHighlight);
-  eleventyConfig.addShortcode("version", function () {
-    return String(Date.now());
-  });
 
   // Responsive image shortcode
   eleventyConfig.addLiquidShortcode("image", async function (src, alt, sizes = "100vw") {
@@ -73,8 +70,8 @@ export default function (eleventyConfig) {
 
   // tokens pass through
   eleventyConfig.addPassthroughCopy({
-    "./../dist/variables.light.css": "./variables.light.css",
-    "./../dist/variables.dark.css": "./variables.dark.css",
+    "./node_modules/rider-design-system/dist/variables.Light.css": "./variables-light.css",
+    "./node_modules/rider-design-system/dist/variables.Dark.css": "./variables-dark.css",
   });
 
   // Eleventy Navigation https://www.11ty.dev/docs/plugins/navigation/
@@ -94,15 +91,6 @@ export default function (eleventyConfig) {
   eleventyConfig.addCollection("pages", function (collection) {
     return collection.getFilteredByGlob("pages/*.md");
   });
-
-  // Creates custom collection "menuItems"
-  eleventyConfig.addCollection("menuItems", collection =>
-    collection
-      .getFilteredByTag("pg")
-      .sort((a, b) => {
-        return (a.data.pg_order || 0) - (b.data.pg_order || 0);
-      })
-  );
 
   function readableDate(dateObj) {
     return DateTime.fromJSDate(dateObj).toFormat("LLL dd, yyyy");

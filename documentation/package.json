@@ -60,6 +60,7 @@
     "postcss": "^8.4.47",
     "qs": "^6.12.0",
     "remove": "^0.1.5",
+    "rider-design-system": "git+https://github.com/mbta/rider-design-system.git",
     "staticrypt": "^1.4.3",
     "uglify-es": "^3.3.9",
     "url-pattern": "^1.0.3"
