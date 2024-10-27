@@ -73,8 +73,8 @@ export default function (eleventyConfig) {
 
   // tokens pass through
   eleventyConfig.addPassthroughCopy({
-    "./../dist/variables.light.css": "./css/variables.light.css",
-    "./../dist/variables.dark.css": "./css/variables.dark.css",
+    "./../dist/variables.light.css": "./variables.light.css",
+    "./../dist/variables.dark.css": "./variables.dark.css",
   });
 
   // Eleventy Navigation https://www.11ty.dev/docs/plugins/navigation/

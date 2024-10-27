@@ -7,9 +7,9 @@
     <meta name="description" content="{{ metaDescription or renderData.metaDescription or site.description }}">
     <link rel="preconnect" href="https://rsms.me/">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link rel="stylesheet" href="/style.css?v={% version %}" />
-    <link rel="stylesheet" href="/css/variables.light.css" media="(prefers-color-scheme: light)" />
-    <link rel="stylesheet" href="/css/variables.dark.css" media="(prefers-color-scheme: dark)" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/variables.light.css" media="(prefers-color-scheme: light)" />
+    <link rel="stylesheet" href="/variables.dark.css" media="(prefers-color-scheme: dark)" />
     <link rel="stylesheet" href="/_includes/assets/css/mbta.css" />
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -20,7 +20,7 @@
       <a href="#main-content" class="mbta--skip-link">Skip to main content
       </a>
       <nav class="mbta--nav">
-        <div class="container mx-auto">
+        <div class="container mx-auto px-3">
           <a class="mbta--logo" href="https://www.mbta.com">
             <img role="img" src="https://cdn.mbta.com/images/mbta-name-and-logo.svg" width="198" height="36" alt="Massachusetts Bay Transportation Authority" />
             <img role="img" src="https://cdn.mbta.com/images/mbta-logo.svg" width="36"height="36" alt="Massachusetts Bay Transportation Authority" />
@@ -38,12 +38,12 @@
 
     <footer>
       <nav class="mbta--subnav">
-        <div class="container mx-auto">
+        <div class="container mx-auto px-3">
           {{ site.footer | safe }}
         </div>
       </nav>
       <nav class="mbta--nav" aria-label="MBTA system footer">
-        <div class="container mx-auto">
+        <div class="container mx-auto px-3">
           <ul class="mbta--nav-actions">
             <li><a href="https://www.mbta.com/policies/privacy-policy">Privacy</a></li>
             <li><a href="https://www.mbta.com/policies/terms-use">Terms and conditions</a></li>
