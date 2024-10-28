@@ -5,6 +5,9 @@ module.exports = {
   content: [
     "_includes/**/*.njk"
   ],
+  safelist: [
+    { pattern: /(text|bg)-./ }
+  ],
   darkMode: 'media',
   variants: {},
   theme: {
