@@ -1,10 +1,14 @@
 const plugin = require('tailwindcss/plugin')
 const tailwindConfig = require("../../dist/tailwind.config.cjs");
+const nunjucks = require("nunjucks");
 
 module.exports = {
-  content: [
-    "_includes/**/*.njk"
-  ],
+  content: {
+    files: "_includes/**/*.njk",
+    transform: (string) => {
+      nunjucks.renderString(string)
+    }
+  },
   darkMode: 'media',
   variants: {},
   theme: {
