@@ -1,7 +1,6 @@
 import { DateTime } from "luxon";
 import CleanCSS from "clean-css";
 import UglifyJS from "uglify-es";
-import htmlmin from "html-minifier";
 import svgContents from "eleventy-plugin-svg-contents";
 import embedEverything from "eleventy-plugin-embed-everything";
 import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
@@ -123,19 +122,6 @@ export default function (eleventyConfig) {
       return code;
     }
     return minified.code;
-  });
-
-  // Minify HTML output
-  eleventyConfig.addTransform("htmlmin", function (content, outputPath) {
-    if (outputPath.indexOf(".html") > -1) {
-      let minified = htmlmin.minify(content, {
-        useShortDoctype: true,
-        removeComments: true,
-        collapseWhitespace: true
-      });
-      return minified;
-    }
-    return content;
   });
 
   // Don't process folders with static assets e.g. images
