@@ -11,8 +11,6 @@ eleventyNavigation:
 
 This shows users that they are on an MBTA page.
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src={{figma}} allowfullscreen></iframe>
-
 ## When to use a {{ title }}
 
 You must use the MBTA header at the top of every page if your service is being hosted on `mbta.com`.

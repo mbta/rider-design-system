@@ -3,7 +3,8 @@ const tailwindConfig = require("../../dist/tailwind.config.cjs");
 
 module.exports = {
   content: [
-    "_includes/**/*.njk"
+    "_includes/**/*.njk",
+    "content/**/*",
   ],
   safelist: [
     { pattern: /(text|bg)-./ }
@@ -25,7 +26,7 @@ module.exports = {
           fontFamily: theme('fontFamily.base')
         },
         'h1, h2, h3, h4, h5, h6':  {
-          fontWeight: theme('fontWeight.normal'),
+          fontWeight: theme('fontWeight.bold'),
           fontFamily: theme('fontFamily.heading'),
           marginTop: theme('spacing.6'),
           marginBottom: theme('spacing.2'),
@@ -37,19 +38,19 @@ module.exports = {
           marginTop: theme('spacing.3')
         },
         'h1': { 
-          fontSize: theme('fontSize.4xl')
-        },
-        'h2': { 
-          fontSize: theme('fontSize.3xl')
-        },
-        'h3': { 
           fontSize: theme('fontSize.2xl')
         },
-        'h4': { 
+        'h2': { 
+          fontSize: theme('fontSize.xl')
+        },
+        'h3': { 
           fontSize: theme('fontSize.lg')
         },
+        'h4': { 
+          fontSize: theme('fontSize.md')
+        },
         'h5': { 
-          fontSize: theme('fontSize.base')
+          fontSize: theme('fontSize.sm')
         },
         'h6': { 
           fontSize: theme('fontSize.sm')

@@ -5,6 +5,19 @@ module.exports = {
   darkMode: "media",
   theme: {
     color: {
+      greenLine: "#00843d",
+      orangeLine: "#ed8b00",
+      redLine: "#da291c",
+      blueLine: "#003da5",
+      silverLine: "#7c878e",
+      brandBus: "#ffc72c",
+      ferry: "#008eaa",
+      theRide: "#52bbc5",
+      commuterRail: "#80276c",
+      swa: "#00b5e2",
+      mbtaDark: "#212322",
+      darkWinter: "#13294b",
+      midWinter: "#147bd1",
       charcoal: {
         10: "#1c1e23",
         20: "#28343e",

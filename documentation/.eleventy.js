@@ -23,6 +23,14 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
   eleventyConfig.addPlugin(syntaxHighlight);
 
+  eleventyConfig.addFilter("systemColors", function(allColors) {
+    return Object.entries(allColors).filter(([k,v]) => ['redLine','orangeLine','greenLine','blueLine','brandBus','silverLine','ferry','theRide','commuterRail','swa','mbtaDark','darkWinter','midWinter'].includes(k))
+  });
+
+  eleventyConfig.addFilter("notSystemColors", function(allColors) {
+    return Object.entries(allColors).filter(([k,v]) => !['redLine','orangeLine','greenLine','blueLine','brandBus','silverLine','ferry','theRide','commuterRail','swa','mbtaDark','darkWinter','midWinter'].includes(k))
+  });
+
   // Responsive image shortcode
   eleventyConfig.addLiquidShortcode("image", async function (src, alt, sizes = "100vw") {
     if (alt === undefined) {

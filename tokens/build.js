@@ -10,7 +10,7 @@ const tailwindConfig = {
     filters: {
       'base': token => {
         const fileName = token.path[0];
-        return fileName == "Base/Mode 1" || fileName == "MBTA System/Value";
+        return fileName == "Base/Mode 1" || fileName == "MBTA System/Mode 1";
       },
     },
     formats: {

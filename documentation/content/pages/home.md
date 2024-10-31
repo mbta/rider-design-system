@@ -3,6 +3,7 @@ title: Overview
 permalink: /
 eleventyNavigation:
   key: Home
+  order: 0
 ---
 
 A brief overview of the design system's purpose and goals, often highlighting its importance for consistency and efficiency.
