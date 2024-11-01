@@ -2,13 +2,15 @@
 layout: layouts/base.njk
 section: page
 ---
-<div class="flex gap-1 mt-3 justify-end text-xs">
+<div class="flex gap-3 mt-3 justify-end text-xs">
   <div>
     <i class="fa-solid fa-hourglass-start"></i>
-    Created {% createdDate %}</div>
+    Created {% createdDate %}
+  </div>
   <div>
     <i class="fa-solid fa-user-pen"></i>
-    Last Updated {% modifiedDate %}</div>
+    Last Updated {% modifiedDate %}
+  </div>
 </div>
 <article class="mb-6 pb-4">
     <h1>{{ title }}</h1>
