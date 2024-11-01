@@ -1,0 +1,11 @@
+<nav label="Breadcrumb" class="py-2 bg-slate-100">
+  {% set bPages = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.key, { includeSelf: true }) %}
+  <div class="container mx-auto px-3">
+  {%- for entry in bPages %}
+    {%- if not loop.first %}
+    <i class="fa-solid fa-chevron-right px-2" aria-hidden="true"></i>
+    {%- endif %}
+    <a class="underline underline-offset-4 decoration-2 hover:decoration-4" href="{{ entry.url }}">{{ entry.title }}</a>
+  {%- endfor -%}
+  </div>
+</nav>

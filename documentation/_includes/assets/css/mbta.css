@@ -28,7 +28,7 @@ a {
 .mbta--skip-link {
   background: 0 0;
   left: 0;
-  padding: var(--spacing-sm) var(--background-secondaryspacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
   position: absolute;
   top: -3.8rem;
   transition: .15s ease-in-out;
@@ -46,23 +46,29 @@ a {
 }
 
 nav.mbta--subnav {
+  a {
+    text-decoration: none;;
+  }
+
+  .mbta--logo {
+    color: var(--menu-item-default-text-color);
+  }
+
   background-color: var(--navbar-local-background-color);
   color: var(--menu-item-default-text-color);
   padding-block: var(--spacing-md);
 
   .container {
     align-items: center;
-    display: flex;
     gap: var(--spacing-md); 
   }
 
-  button {
+  .mbta--subnav-button {
     background-color: transparent;
     border: var(--border-width-sm) solid var(--menu-item-default-border-color);
     border-radius: var(--border-radius-default);
-    color: var(--color-white);
-    /* color: var(--menu-item-default-text-color); */
-    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--menu-item-default-text-color);
+    padding: var(--spacing-xs) var(--spacing-sm);
     font-weight: bold;
 
     + div a {
@@ -71,10 +77,20 @@ nav.mbta--subnav {
     }
   }
 
-  button:hover, button[aria-expanded="true"] {
+  .mbta--subnav-button:hover, .mbta--subnav-button[aria-expanded="true"] {
     background-color: var(--menu-item-active-background-color);
     border-color: var(--menu-item-active-border-color);
     color: var(--menu-item-active-text-color);
+  }
+
+  .mbta--subnav-dropdown {
+    background-color: var(--submenu-background-color);
+    border-color: var(--menu-item-active-border-color);
+    color: var(--menu-item-active-text-color);
+
+    a:hover {
+      background-color: var(--submenu-item-hover-background-color);
+    }
   }
 }
 

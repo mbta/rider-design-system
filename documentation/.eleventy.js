@@ -17,6 +17,8 @@ import markdownItAttrs from "markdown-it-attrs";
 import markdownItCenterText from "markdown-it-center-text";
 import { statSync } from "fs";
 
+const systemColorKeys = ['redLine','orangeLine','greenLine','blueLine','brandBus','silverLine','ferry','theRide','commuterRail','swa','mbtaDark','darkWinter','midWinter'];
+
 export default function (eleventyConfig) {
   eleventyConfig.addPlugin(svgContents);
   eleventyConfig.addPlugin(embedEverything);
@@ -24,11 +26,11 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
 
   eleventyConfig.addFilter("systemColors", function(allColors) {
-    return Object.entries(allColors).filter(([k,v]) => ['redLine','orangeLine','greenLine','blueLine','brandBus','silverLine','ferry','theRide','commuterRail','swa','mbtaDark','darkWinter','midWinter'].includes(k))
+    return Object.entries(allColors).filter(([k,v]) => systemColorKeys.includes(k))
   });
 
   eleventyConfig.addFilter("notSystemColors", function(allColors) {
-    return Object.entries(allColors).filter(([k,v]) => !['redLine','orangeLine','greenLine','blueLine','brandBus','silverLine','ferry','theRide','commuterRail','swa','mbtaDark','darkWinter','midWinter'].includes(k))
+    return Object.entries(allColors).filter(([k,v]) => !systemColorKeys.includes(k))
   });
 
   // Responsive image shortcode

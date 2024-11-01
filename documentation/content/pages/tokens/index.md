@@ -25,7 +25,7 @@ eleventyNavigation:
     </div>
   {%- else -%}
     {%- for shade in colorConfig[1] -%}
-        {%- if shade[0] <= 50 -%}
+        {%- if shade[0] < 50 -%}
           {%- assign text_class = "text-white" -%}
           {%- assign shade_bg_class = "bg-black" -%}
         {%- else -%}

@@ -1,0 +1,57 @@
+<nav class="mbta--subnav">
+  <div class="container mx-auto px-3">
+    <a class="mbta--logo text-lg no-underline font-bold" href="/">{{ site.name }}</a>
+
+    <div class="block sm:inline-flex gap-1 ml-0 sm:ml-3 justify-center">
+      {% set navPages = collections.all | eleventyNavigation %}
+      {%- for entry in navPages %}
+        {%- if entry.children.length -%}
+          <div class="relative"
+            x-id="['dropdown-button']"
+            x-data="{
+                open: false,
+                toggle() {
+                    if (this.open) { return this.close() }
+                    this.$refs.button.focus()
+                    this.open = true
+                },
+                close(focusAfter) {
+                    if (! this.open) return
+                    this.open = false
+                    focusAfter && focusAfter.focus()
+                }
+            }"
+            x-on:keydown.escape.prevent.stop="close($refs.button)"
+            x-on:focusin.window="! $refs.panel.contains($event.target) && close()">
+              <button x-ref="button"
+                x-on:click="toggle()"
+                :aria-expanded="open"
+                :aria-controls="$id('dropdown-button')"
+                type="button"
+                class="flex items-center gap-2 mbta--subnav-button" href="{{ entry.url }}">
+                {{ entry.title }}
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="mbta--subnav-dropdown absolute left-0 mt-1 min-w-28  grid grid-cols-1 z-10"
+                style="display: none;"
+                x-ref="panel"
+                x-show="open"
+                x-transition.origin.top.left
+                x-on:click.outside="close($refs.button)"
+                :id="$id('dropdown-button')">
+                {%- for child in entry.children %}
+                  <a class="p-2" href="{{child.url}}">
+                    {{child.title}}
+                  <a>
+                {% endfor -%}
+              </div>
+          </div>
+        {%- else -%}
+          <a class="mbta--subnav-button" href="{{entry.url}}">
+            {{entry.title}}
+          <a>
+        {%- endif -%}
+      {%- endfor -%}
+      </div>
+    </div>
+  </nav>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html {% if section %} data-current="{{ section }}"{% endif %} lang="en">
+<html lang="en" class="h-full">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,45 +15,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://unpkg.com/prismjs@1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
   </head>
-  <body>
+  <body class="flex min-h-full flex-col">
     <section role="banner">
-      <a href="#main-content" class="mbta--skip-link">Skip to main content
+      <a href="#main" class="mbta--skip-link">Skip to main content
       </a>
-      <nav class="mbta--nav">
-        <div class="container mx-auto px-3">
-          <a class="mbta--logo" href="https://www.mbta.com">
-            <img role="img" src="https://cdn.mbta.com/images/mbta-name-and-logo.svg" width="198" height="36" alt="Massachusetts Bay Transportation Authority" />
-            <img role="img" src="https://cdn.mbta.com/images/mbta-logo.svg" width="36"height="36" alt="Massachusetts Bay Transportation Authority" />
-          </a>
-        </div>
-      </nav>
+      {% include "partials/global-nav.njk" %}
     </section>
-  
-    <div id="app">
-      {% include "components/header.njk" %}
-      <main id="main" class="container mx-auto px-3">
-        {{ content | safe }} 
-      </main>
-    </div>
-
-    <footer>
-      <nav class="mbta--subnav">
-        <div class="container mx-auto px-3">
-          {{ site.footer | safe }}
-        </div>
-      </nav>
-      <nav class="mbta--nav" aria-label="MBTA system footer">
-        <div class="container mx-auto px-3">
-          <ul class="mbta--nav-actions">
-            <li><a href="https://www.mbta.com/policies/privacy-policy">Privacy</a></li>
-            <li><a href="https://www.mbta.com/policies/terms-use">Terms and conditions</a></li>
-          </ul>
-          <div class="mbta--copyright">© Massachusetts Bay Transportation Authority, all rights reserved.</div>
-          <a class="mbta--logo" href="https://www.mbta.com">
-            <img role="img" src="https://cdn.mbta.com/images/mbta-logo.svg" width="36" height="36" alt="Massachusetts Bay Transportation Authority" />
-          </a>
-        </div>
-      </nav>
-    </footer>
+    {% include "partials/local-nav.njk" %}
+    {% include "partials/breadcrumbs.njk" %}
+    <main id="main" class="container mx-auto px-3 grow">
+      {{ content | safe }} 
+    </main>
+    {% include "partials/footer.njk" %}
   </body>
 </html>
