@@ -7,7 +7,7 @@
     "dist/*"
   ],
   "exports": {
-    ".": "./dist/tailwind.config.js"
+    ".": "./dist/tailwind.config.cjs"
   },
   "directories": {
     "doc": "docs"
