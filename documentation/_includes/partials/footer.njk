@@ -1,19 +1,19 @@
 
     <footer>
       <nav class="mbta--subnav">
-        <div class="container mx-auto px-3">
+        <div class="container">
           {{ site.footer | safe }}
         </div>
       </nav>
       <nav class="mbta--nav" aria-label="MBTA system footer">
-        <div class="container mx-auto px-3 flex flex-col sm:flex-row sm:items-center gap-4">
-          <ul class="mbta--nav-actions">
+        <div class="container flex flex-col sm:flex-row sm:items-center gap-4">
+          <ul class="mbta--nav-actions list-none p-0">
             <li><a href="https://www.mbta.com/policies/privacy-policy">Privacy Policy</a></li>
             <li><a href="https://www.mbta.com/policies/terms-use">Terms of Use</a></li>
           </ul>
           <div class="mbta--copyright">© Massachusetts Bay Transportation Authority, all rights reserved.</div>
           <a class="mbta--logo" href="https://www.mbta.com">
-            <img role="img" src="https://cdn.mbta.com/images/mbta-logo.svg" width="36" height="36" alt="Massachusetts Bay Transportation Authority" />
+            <img src="/static/images/mbta-logo.svg" width="36" height="36" alt="Massachusetts Bay Transportation Authority" />
           </a>
         </div>
       </nav>

@@ -7,7 +7,7 @@ eleventyNavigation:
   parent: Patterns
 ---
 
-<p class="text-2xl">The {{ title }} is for applications and subsites outside of the main MBTA.com website.</p>
+The {{ title }} is for applications and subsites outside of the main MBTA.com website.
 
 This shows users that they are on an MBTA page, and offers links users might not find elsewhere in the page.
 

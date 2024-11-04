@@ -1,7 +1,7 @@
 
 body {
-  background-color: var(--background-primary);
-  color: var(--text-primary);
+  background-color: var(--background-tertiary);
+  color: var(--text-tertiary);
   font-family: var(--font-family-base);
   font-size: var(--font-size-default);
   line-height: var(--line-height-normal);
@@ -117,7 +117,7 @@ nav.mbta--subnav {
 
 .mbta--submenu {
   margin-top: var(--spacing-xs);
-  min-width: min-content;
+  min-width: max-content;
 
   a {
     padding-block: var(--spacing-sm);
@@ -177,10 +177,10 @@ nav.mbta--nav {
     flex-shrink: 0;
   }
 
-  [src='https://cdn.mbta.com/images/mbta-logo.svg']  {
+  [src$='/mbta-logo.svg']  {
     display: none; 
   }
-  [src='https://cdn.mbta.com/images/mbta-name-and-logo.svg']  {
+  [src$='/mbta-name-and-logo.svg']  {
     display: inline-block; 
   }
 
@@ -195,10 +195,10 @@ nav.mbta--nav {
   }
 
   @container header-logo (width < 130px) {
-    [src='https://cdn.mbta.com/images/mbta-logo.svg']  {
+    [src$='/mbta-logo.svg']  {
       display: inline-block; 
     }
-    [src='https://cdn.mbta.com/images/mbta-name-and-logo.svg']  {
+    [src$='/mbta-name-and-logo.svg']  {
       display: none; 
     }
   }

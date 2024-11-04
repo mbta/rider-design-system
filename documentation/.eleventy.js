@@ -17,7 +17,8 @@ import markdownItAttrs from "markdown-it-attrs";
 import markdownItCenterText from "markdown-it-center-text";
 import { statSync } from "fs";
 
-const systemColorKeys = ['redLine','orangeLine','greenLine','blueLine','brandBus','silverLine','ferry','theRide','commuterRail','swa','mbtaDark','darkWinter','midWinter'];
+const systemColorKeys = ['redLine','orangeLine','greenLine','blueLine','brandBus','silverLine','ferry','theRide','commuterRail'];
+const additionalColorKeys = ['swa','mbtaDark','darkWinter','midWinter'];
 
 export default function (eleventyConfig) {
   eleventyConfig.addPlugin(svgContents);
@@ -28,9 +29,12 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("systemColors", function(allColors) {
     return Object.entries(allColors).filter(([k,v]) => systemColorKeys.includes(k))
   });
+  eleventyConfig.addFilter("additionalColors", function(allColors) {
+    return Object.entries(allColors).filter(([k,v]) => additionalColorKeys.includes(k))
+  });
 
   eleventyConfig.addFilter("notSystemColors", function(allColors) {
-    return Object.entries(allColors).filter(([k,v]) => !systemColorKeys.includes(k))
+    return Object.entries(allColors).filter(([k,v]) => !systemColorKeys.includes(k) && !additionalColorKeys.includes(k));
   });
 
   // Responsive image shortcode
@@ -77,8 +81,10 @@ export default function (eleventyConfig) {
     "./node_modules/alpinejs/dist/cdn.min.js": "./js/alpine.js",
   });
 
-  // tokens pass through
+  // tokens, fonts, icons pass through
   eleventyConfig.addPassthroughCopy({
+    "./node_modules/rider-design-system/dist/static": "./static/",
+    "./node_modules/rider-design-system/dist/tailwind.config.js": "./tailwind.config.js",
     "./node_modules/rider-design-system/dist/variables.Light.css": "./variables-light.css",
     "./node_modules/rider-design-system/dist/variables.Dark.css": "./variables-dark.css",
   });

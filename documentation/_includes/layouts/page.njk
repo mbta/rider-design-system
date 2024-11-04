@@ -13,12 +13,13 @@ section: page
   </div>
 </div>
 <article class="mb-6 pb-4">
-    <h1>{{ title }}</h1>
-    {%- if figma -%}
-    <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src={{figma}} allowfullscreen></iframe>
-    {%- endif -%}
-    <div class="mt-3 self-center adjust">
-      {{ content | safe }}
-    </div>
+  <h1>{{ title }}</h1>
+  {%- if figma -%}
+  <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src={{figma}} allowfullscreen></iframe>
+  {%- endif -%}
+
+  <div class="mt-3 self-center adjust">
+    {{ content | safe }}
+  </div>
 </article>
 

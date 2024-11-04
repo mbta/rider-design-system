@@ -24,7 +24,12 @@
     </section>
     {% include "partials/local-nav.njk" %}
     {% include "partials/breadcrumbs.njk" %}
-    <main id="main" class="container mx-auto px-3 grow">
+    {%- if status == 'draft' -%}
+    <div id="status" class="p-md border-4 dark:bg-gold-20/30 border-gold-50 bg-gold-80 text-center">
+      This is a draft. Talk to us.
+    </div>
+    {%- endif -%}
+    <main id="main" class="container grow" aria-describedby="status">
       {{ content | safe }} 
     </main>
     {% include "partials/footer.njk" %}

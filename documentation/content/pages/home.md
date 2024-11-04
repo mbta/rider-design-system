@@ -10,24 +10,24 @@ A brief overview of the design system's purpose and goals, often highlighting it
 
 ## Getting started
 
-Links or sections guiding users on how to begin using the design system, including installation instructions and basic usage.
+Try the included Tailwind configuration:
 
-### Tokens
+{% highlight js %}
+import tailwindConfig from "rider-design-system";
+{% endhighlight %}
 
-Tokens with a list.
+Optionally use the included CSS variables:
 
-### Components
+{% highlight css %}
+@import "node_modules/rider-design-system/dist/variables.light.css"
+@import "node_modules/rider-design-system/dist/variables.dark.css"
+{% endhighlight %}
 
-What are components, with a list
+Read more about [tokens](/tokens/), [icons](/icons/), and [patterns](/patterns/).
 
-### Patterns
+## Implementations
 
-Patterns with a list
+- **Metro**, the Elixir library of reusable components for use in Phoenix applications.
+  - [Github](https://www.github.com/mbta/mbta_metro)
+  - [Storybook]()
 
-## FAQ
-
-Information on recent updates or changes to the design system, often displayed to keep users informed.
-
-How to be involved?
-
-Etc.

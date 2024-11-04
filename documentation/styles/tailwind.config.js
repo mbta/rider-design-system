@@ -14,7 +14,17 @@ module.exports = {
   theme: {
     extend: {
       ...tailwindConfig.theme,
-      colors: tailwindConfig.theme.color
+      colors: tailwindConfig.theme.color,
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: '1rem',
+          sm: '3rem',
+          lg: '5rem',
+          xl: '6rem',
+          '2xl': '8rem',
+        },
+      },
     },
   },
   plugins: [
@@ -33,6 +43,14 @@ module.exports = {
           '&:has(+p)': {
             marginBottom: theme('spacing.1')
           }
+        },
+        'p': {
+          marginTop: theme('spacing.4'),
+          marginBottom: theme('spacing.2')
+        },
+        'ul': {
+          listStyle: 'disc',
+          paddingLeft: theme('spacing.4')
         },
         'h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6, p + h3, p + h4, p + h5, p + h6':  {
           marginTop: theme('spacing.3')
