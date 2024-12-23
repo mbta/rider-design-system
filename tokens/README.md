@@ -13,13 +13,16 @@
 
 ### Token generation and distribution
 
-1. Tokens are exported from Figma, via the Token Studio Figma plugin. The exported files are included in this repository at:
+1. Tokens are exported from Figma, via the Token Studio Figma plugin. They are _not_ synced via the built-in Github integration, but instead manually exported to a `tokens.zip` file, which is then extracted into this repository at:
   ```
-  tokens/
+  tokens/figma/
   |-- Base/
   |      |-- Mode 1.json
+  |   Components/
+  |      |-- Dark.json
+  |      |-- Light.json
   |-- MBTA System/
-  |      |-- Value.json
+  |      |-- Mode 1.json
   |-- Semantic/
   |      |-- Dark.json
   |      |-- Light.json

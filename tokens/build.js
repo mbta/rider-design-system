@@ -1,25 +1,62 @@
 import { register } from '@tokens-studio/sd-transforms';
 import StyleDictionary from 'style-dictionary';
 import { getTailwindFormat } from 'sd-tailwindcss-transformer';
-import { kebabCase } from 'change-case';
 
-register(StyleDictionary);
+/* Register Tokens Studio transforms */
+register(StyleDictionary, { excludeParentKeys: false });
+
+/* Register even more custom transforms */
+StyleDictionary.registerTransform({
+  type: "value",
+  transitive: true,
+  name: "adjustOtherUnits",
+  filter: (token, options) => {
+    return token.attributes.category === "transition-duration" || token.attributes.category === "line-height";
+  },
+  transform: (token) => {
+    return token.original.value
+  },
+});
+
+const preprocessors = ['tokens-studio'];
+const transforms = [
+  'attribute/cti',
+  'name/kebab',
+  'fontFamily/css',
+  'ts/size/px',
+  'size/pxToRem',
+  'adjustOtherUnits'
+];
+
+const themeCSSConfigs = ["Light", "Dark"].map(theme =>
+({
+  source: [
+    "tokens/figma/Base/Mode 1.json",
+    `tokens/figma/Semantic/${theme}.json`,
+    `tokens/figma/Components/${theme}.json`,
+  ],
+  preprocessors,
+  platforms: {
+    css: {
+      transforms,
+      transformGroup: 'tokens-studio',
+      buildPath: 'dist/',
+      files: [{
+        destination: `variables.${theme.toLowerCase()}.css`,
+        format: 'css/variables'
+      }],
+    }
+  }
+})
+);
 
 const tailwindConfig = {
   hooks: {
-    filters: {
-      'base': token => {
-        const fileName = token.path[0];
-        return fileName == "Base/Mode 1" || fileName == "MBTA System/Mode 1";
-      },
-    },
     formats: {
       tailwindFormat: ({ dictionary }) => {
         return getTailwindFormat({
           dictionary,
           formatType: "js",
-          isVariables: false, // don't use CSS variables
-          extend: false, // completely replace the default TW theme
           type: "all",
           tailwind: {
             content: [],
@@ -27,78 +64,26 @@ const tailwindConfig = {
           }
         })
       }
-    },
-    transforms: {
-      'removeFileName': {
-        type: 'attribute',
-        transitive: true,
-        transform: token => {
-          delete token.attributes.category
-          return token.attributes;
-        },
-      }
     }
   },
-  source: ["tokens/tokens.json"],
-  preprocessors: ['tokens-studio'],
+  source: [
+    "tokens/figma/Base/Mode 1.json",
+    "tokens/figma/MBTA System/Mode 1.json",
+  ],
+  preprocessors,
   platforms: {
     tailwind: {
-      transforms: [
-        'attribute/cti',
-        'removeFileName',
-        'name/kebab'
-      ],
+      transforms,
       buildPath: "dist/",
       files: [
         {
-          destination: "tailwind.config.cjs",
-          format: 'tailwindFormat',
-          filter: 'base'
+          destination: 'tailwind.config.js',
+          format: 'tailwindFormat'
         }
       ]
     }
   }
 };
-
-const themeCSSConfigs = ["Light", "Dark"].map(theme =>
-({
-  source: [
-     "tokens/tokens.json"
-  ],
-  hooks: {
-    filters: {
-      'theme': token => {
-        const fileName = token.path[0];
-        if (fileName == "Base/Mode 1") return true;
-        return fileName == `Semantic/${theme}` || fileName == `Components/${theme}`;
-      },
-    },
-    transforms: {
-      'removeFileName': {
-        type: `name`,
-        transitive: true,
-        transform: (token) => {
-          const [category, ...tokenPath] = token.path;
-          return kebabCase(tokenPath.join(' '))
-        },
-      }
-    }
-  },
-  preprocessors: ['tokens-studio'],
-  platforms: {
-    css: {
-      transformGroup: 'tokens-studio',
-      transforms: ['removeFileName'],
-      buildPath: 'dist/',
-      files: [{
-        destination: `variables.${theme.toLowerCase()}.css`,
-        format: 'css/variables',
-        filter: 'theme'
-      }],
-    }
-  }
-})
-);
 
 for (var config of [tailwindConfig, ...themeCSSConfigs]) {
   const sd = new StyleDictionary(config, { verbosity: "verbose" });

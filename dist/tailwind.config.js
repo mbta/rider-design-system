@@ -4,20 +4,7 @@ module.exports = {
   content: [],
   darkMode: "media",
   theme: {
-    color: {
-      greenLine: "#00843d",
-      orangeLine: "#ed8b00",
-      redLine: "#da291c",
-      blueLine: "#003da5",
-      silverLine: "#7c878e",
-      brandBus: "#ffc72c",
-      ferry: "#008eaa",
-      theRide: "#52bbc5",
-      commuterRail: "#80276c",
-      swa: "#00b5e2",
-      mbtaDark: "#212322",
-      darkWinter: "#13294b",
-      midWinter: "#147bd1",
+    colors: {
       charcoal: {
         10: "#1c1e23",
         20: "#28343e",
@@ -26,8 +13,8 @@ module.exports = {
         50: "#777f92",
         60: "#a0a4b1",
         70: "#bdbfc1",
-        80: "#dddfe3",
-        90: "#f2f3f5"
+        80: "#e8eaee",
+        90: "#f4f5f7"
       },
       cobalt: {
         10: "#071e31",
@@ -85,16 +72,29 @@ module.exports = {
         90: "#dcd3e8"
       },
       white: "#ffffff",
-      black: "#000000"
+      black: "#000000",
+      greenLine: "#00843d",
+      orangeLine: "#ed8b00",
+      redLine: "#da291c",
+      blueLine: "#003da5",
+      silverLine: "#7c878e",
+      brandBus: "#ffc72c",
+      ferry: "#008eaa",
+      theRide: "#52bbc5",
+      commuterRail: "#80276c",
+      swa: "#00b5e2",
+      mbtaDark: "#212322",
+      darkWinter: "#13294b",
+      midWinter: "#147bd1"
     },
     fontFamily: {
       base: "Inter, ui-sans-serif, system-ui, sans-serif",
-      heading: "\"Helvetica Neue\", Helvetica, ui-sans-serif, system-ui, sans-serif",
+      heading: "\"Helvetica Neue\", Helvetica, Inter, Arial, ui-sans-serif, system-ui, sans-serif",
       inter: "Inter, ui-sans-serif, system-ui, sans-serif",
-      helvetica: "\"Helvetica Neue\", Helvetica, ui-sans-serif, system-ui, sans-serif"
+      helvetica: "\"Helvetica Neue\", Helvetica, Inter, Arial, ui-sans-serif, system-ui, sans-serif"
     },
     borderRadius: {
-      none: "0rem",
+      none: "0",
       xs: "0.125rem",
       DEFAULT: "0.25rem",
       md: "0.375rem",
@@ -108,10 +108,12 @@ module.exports = {
     borderWidth: {
       DEFAULT: "0.125rem",
       xs: "0.0625rem",
-      sm: "0.125rem"
+      sm: "0.125rem",
+      md: "0.1875rem",
+      lg: "0.25rem"
     },
     spacing: {
-      none: "0rem",
+      none: "0",
       xs: "0.25rem",
       sm: "0.5rem",
       md: "1rem",
@@ -129,13 +131,15 @@ module.exports = {
     "2xl": "2rem",
       md: "1rem"
     },
-    lineHeight: {
-      normal: "1.5",
-      relaxed: "2",
-      loose: "2.5"
-    },
     transitionDuration: {
       DEFAULT: "200ms"
+    },
+    lineHeight: {
+      DEFAULT: "24px",
+      md: "24px",
+      lg: "32px",
+    "2xl": "48px",
+      xl: "40px"
     }
   },
 }

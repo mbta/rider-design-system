@@ -1,0 +1,55 @@
+{
+  "text-primary": {
+    "value": "{colors.white}",
+    "type": "color"
+  },
+  "background-primary": {
+    "value": "{colors.black}",
+    "type": "color"
+  },
+  "background-secondary": {
+    "value": "{colors.charcoal.10}",
+    "type": "color"
+  },
+  "background-tertiary": {
+    "value": "{colors.charcoal.20}",
+    "type": "color"
+  },
+  "text-secondary": {
+    "value": "{colors.charcoal.70}",
+    "type": "color"
+  },
+  "text-tertiary": {
+    "value": "{colors.charcoal.60}",
+    "type": "color"
+  },
+  "colors": {
+    "action-primary": {
+      "default": {
+        "value": "{colors.cobalt.80}",
+        "type": "color"
+      },
+      "hover": {
+        "value": "{colors.cobalt.90}",
+        "type": "color"
+      },
+      "active": {
+        "value": "{colors.cobalt.70}",
+        "type": "color"
+      },
+      "disabled": {
+        "value": "{colors.charcoal.80}",
+        "type": "color"
+      },
+      "visited": {
+        "value": "{colors.amethyst.80}",
+        "type": "color",
+        "description": "Only use this if applicable. Such as in the context of a link."
+      }
+    },
+    "focus": {
+      "value": "{colors.cobalt.60}",
+      "type": "color"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "tokenSetOrder": [
+    "Components/Light",
+    "Components/Dark",
+    "Semantic/Light",
+    "Semantic/Dark",
+    "MBTA System/Mode 1",
+    "Base/Mode 1"
+  ]
+}
