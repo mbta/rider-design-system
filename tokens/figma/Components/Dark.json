@@ -170,7 +170,7 @@
         },
         "background": {
           "color": {
-            "value": "{colors.white}",
+            "value": "{colors.black}",
             "type": "color"
           }
         }

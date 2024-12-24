@@ -118,6 +118,7 @@
   --line-height-lg: 32px;
   --line-height-2xl: 48px;
   --line-height-xl: 40px;
+  --minimum-tap-target-size: 2.75rem; /* Minimum X and Y dimension in pixels for any tappable target. */
   --text-primary: #ffffff;
   --background-primary: #000000;
   --background-secondary: #1c1e23;
@@ -146,7 +147,7 @@
   --button-primary-active-border-color: #a1c6ed;
   --button-secondary-default-text-color: #cee0f4;
   --button-secondary-default-border-color: #cee0f4;
-  --button-secondary-default-background-color: #ffffff;
+  --button-secondary-default-background-color: #000000;
   --button-secondary-active-text-color: #0b2f4c;
   --button-secondary-active-background-color: #a1c6ed;
   --button-secondary-active-border-color: #a1c6ed;

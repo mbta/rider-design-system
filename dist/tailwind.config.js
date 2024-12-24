@@ -140,6 +140,7 @@ module.exports = {
       lg: "var(--line-height-lg)",
     "2xl": "var(--line-height-2xl)",
       xl: "var(--line-height-xl)"
-    }
+    },
+    minimumTapTargetSize: "var(--minimum-tap-target-size)"
   },
 }

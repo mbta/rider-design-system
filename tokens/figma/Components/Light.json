@@ -278,5 +278,10 @@
         }
       }
     }
+  },
+  "minimum-tap-target-size": {
+    "value": "44px",
+    "type": "dimension",
+    "description": "Minimum X and Y dimension in pixels for any tappable target."
   }
 }

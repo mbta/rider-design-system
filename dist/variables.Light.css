@@ -118,6 +118,7 @@
   --line-height-lg: 32px;
   --line-height-2xl: 48px;
   --line-height-xl: 40px;
+  --minimum-tap-target-size: 2.75rem; /* Minimum X and Y dimension in pixels for any tappable target. */
   --text-primary: #000000;
   --background-primary: #ffffff;
   --background-secondary: #f4f5f7;
