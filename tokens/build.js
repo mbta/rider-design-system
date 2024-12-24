@@ -1,6 +1,7 @@
 import { register } from '@tokens-studio/sd-transforms';
 import StyleDictionary from 'style-dictionary';
 import { getTailwindFormat } from 'sd-tailwindcss-transformer';
+import { kebabCase } from 'change-case';
 
 /* Register Tokens Studio transforms */
 register(StyleDictionary, { excludeParentKeys: false });
@@ -32,6 +33,7 @@ const themeCSSConfigs = ["Light", "Dark"].map(theme =>
 ({
   source: [
     "tokens/figma/Base/Mode 1.json",
+    "tokens/figma/MBTA System/Mode 1.json",
     `tokens/figma/Semantic/${theme}.json`,
     `tokens/figma/Components/${theme}.json`,
   ],
@@ -54,15 +56,24 @@ const tailwindConfig = {
   hooks: {
     formats: {
       tailwindFormat: ({ dictionary }) => {
-        return getTailwindFormat({
+        const formattedTailwindConfig = getTailwindFormat({
           dictionary,
           formatType: "js",
+          isVariables: true,
           type: "all",
           tailwind: {
             content: [],
             darkMode: "media"
           }
-        })
+        });
+        // Can't really inject our own formatters or filters into the
+        // sd-tailwindcss-transformer, so we gotta process the output after the
+        // fact to un-camel-case certain names to create nicer utility class
+        // names (e.g. "bg-green-line" instead of "bg-greenLine")
+        const systemColorNamesRegex = new RegExp(["greenLine", "orangeLine", "redLine", "blueLine", "silverLine", "brandBus", "theRide", "commuterRail", "mbtaDark", "darkWinter", "midWinter"].join("|"), "gi");
+        return formattedTailwindConfig.replace(systemColorNamesRegex, function (matched) {
+          return `"${kebabCase(matched)}"`;
+        });
       }
     }
   },
