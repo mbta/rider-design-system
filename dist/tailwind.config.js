@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const tailwindConfig = {
   mode: "jit",
   content: [],
   darkMode: "media",
@@ -143,4 +143,5 @@ module.exports = {
     },
     minimumTapTargetSize: "var(--minimum-tap-target-size)"
   },
-}
+};
+export default tailwindConfig.theme;

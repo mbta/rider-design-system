@@ -71,9 +71,10 @@ const tailwindConfig = {
         // fact to un-camel-case certain names to create nicer utility class
         // names (e.g. "bg-green-line" instead of "bg-greenLine")
         const systemColorNamesRegex = new RegExp(["greenLine", "orangeLine", "redLine", "blueLine", "silverLine", "brandBus", "theRide", "commuterRail", "mbtaDark", "darkWinter", "midWinter"].join("|"), "gi");
-        return formattedTailwindConfig.replace(systemColorNamesRegex, function (matched) {
+        const config = formattedTailwindConfig.replace(systemColorNamesRegex, function (matched) {
           return `"${kebabCase(matched)}"`;
-        });
+        }).replace("module.exports", "const tailwindConfig");
+        return config.concat(";\nexport default tailwindConfig.theme;\n");
       }
     }
   },
